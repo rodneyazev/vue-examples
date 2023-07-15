@@ -23,6 +23,7 @@
 
     export default defineComponent({
         name: 'Temporizador',
+        emits: ['temporizadorFinalizado'],
         components: {
             Cronometro
         },
@@ -44,6 +45,8 @@
             finalizarContagem(){  
                 this.cronometroAtivo = false ;
                 clearInterval(this.cronometro);
+                this.$emit('temporizadorFinalizado', this.tempoEmSegundos);
+                this.tempoEmSegundos = 0;
             }
         }
     });
